@@ -64,4 +64,7 @@ class Modele extends AbstractTableModel {
 		donnee.add(new String[] { "", "", "", "" });
 		this.fireTableDataChanged();
 	}
+	
+	
+	
 }

@@ -21,10 +21,10 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     this.setTitle("Gestionnaire des Missions");
     this.setLayout(new BorderLayout());
 
-    //CrÃ©ation de l'item "Jeu"
+    //CrÃ©ation de l'item "File"
     JMenu fichier = new JMenu("File");
-    JMenuItem rejouer = new JMenuItem("Nouveau");
-    fichier.add(rejouer);
+    JMenuItem nouveau = new JMenuItem("Nouveau");
+    fichier.add(nouveau);
     JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
     fichier.add(sauvegarder);
     JMenuItem quitter = new JMenuItem("Quitter");
@@ -49,11 +49,11 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     this.add(this.vueGestionMission,BorderLayout.CENTER);
     
     //Ajout de la vue Competences
-     JButton b = new JButton("Afficher liste compétences");
-     b.addActionListener((ActionListener) this);
+//     JButton b = new JButton("Afficher liste compétences");
+//     b.addActionListener((ActionListener) this);
      
-    this.vueCompetences=new VueCompetences();
-    this.add(this.vueCompetences, BorderLayout.LINE_END);
+//    this.vueCompetences=new VueCompetences();
+//    this.add(this.vueCompetences, BorderLayout.LINE_END);
 
     this.pack();
     this.setVisible(true);

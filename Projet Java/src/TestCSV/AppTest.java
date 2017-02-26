@@ -21,16 +21,19 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Modele.CSV;
+import Modele.CSVModele;
+
 public class AppTest extends JPanel {
 	private final JTable table;
-	private Modele modele;
+	private CSVModele modele;
 	private JPanel boutons;
 	static File fichier;
 
 	public AppTest() {
 		// Interface avec JTable (Centre)
 		super(new BorderLayout());
-		this.table = new JTable(new Modele());
+		this.table = new JTable(new CSVModele());
 		this.table.setPreferredScrollableViewportSize(new Dimension(700, 700));
 		this.table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -64,7 +67,7 @@ public class AppTest extends JPanel {
 					File file = choixFichier.getSelectedFile();
 					AppTest.fichier = file;
 					CSV csv = new CSV();
-					modele = new Modele();
+					modele = new CSVModele();
 					ArrayList<String[]> donneeCSV = csv.ReadCSVfile(file);
 					modele.ajouterDonnee(donneeCSV);
 					table.setModel(modele);
@@ -137,7 +140,7 @@ public class AppTest extends JPanel {
 		// Bouton add
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Modele modele = (Modele) table.getModel();
+				CSVModele modele = (CSVModele) table.getModel();
 				modele.addRow();
 			}
 		});
@@ -146,7 +149,7 @@ public class AppTest extends JPanel {
 		remove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
-				Modele modele = (Modele) table.getModel();
+				CSVModele modele = (CSVModele) table.getModel();
 				if (row != -1)
 					modele.deleteRow(row);
 			}

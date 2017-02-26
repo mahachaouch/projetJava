@@ -16,9 +16,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.omg.CORBA.portable.InputStream;
 
+import Modele.CSV;
 import Modele.Personne;
 import TestCSV.AppTest;
-import TestCSV.CSV;
 
 public class VueCompetences extends JPanel implements Serializable {
 	final int  MAX=100;

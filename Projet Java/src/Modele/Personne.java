@@ -37,6 +37,22 @@ public class Personne {
 		return nom;
 	}
 
+	public ArrayList<Competence> getListCompetences() {
+		return listCompetences;
+	}
+
+	public void setListCompetences(ArrayList<Competence> listCompetences) {
+		this.listCompetences = listCompetences;
+	}
+
+	public int getNbMission() {
+		return nbMission;
+	}
+
+	public void setNbMission(int nbMission) {
+		this.nbMission = nbMission;
+	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}

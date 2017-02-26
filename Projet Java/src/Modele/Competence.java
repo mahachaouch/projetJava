@@ -2,6 +2,10 @@ package Modele;
 
 public class Competence {
 	
+	@Override
+	public String toString() {
+		return "Competence [domaine=" + domaine + ", code=" + code + "]";
+	}
 	private String domaine;
 	private String code;
 	

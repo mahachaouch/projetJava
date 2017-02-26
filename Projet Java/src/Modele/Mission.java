@@ -5,7 +5,10 @@ import java.util.Date;
 
 public abstract class Mission  {
 	private Date DateDebut;
+	//la durée d une mission se mesure en mois
 	private int duree;
+	private int codeMission;
+	
 	public Date getDateDebut() {
 		return DateDebut;
 	}

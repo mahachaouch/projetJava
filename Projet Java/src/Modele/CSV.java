@@ -156,8 +156,8 @@ public class CSV {
 		
 		public static void main(String[] args) throws IOException{
 			String Directory = System.getProperty("user.dir");
-			Directory+="\\src\\Bd\\liste_competences.csv";
-			test(Directory,"A4 JAVA2 SWING2 29");
+			Directory+="\\src\\Bd\\liste_mission.csv";
+			test(Directory,"5;20/02/2017;6");
 			
 			//updateCSV(Directory,"xxx",2,2);
 			

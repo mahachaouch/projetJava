@@ -66,7 +66,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
 	 public void actionPerformed(ActionEvent e) {
 	        JFrame frame2 = new JFrame("Accueil");
 	        frame2.setVisible(true);
-	        frame2.setSize(600, 600);
+	        frame2.setSize(600, 1000);
 	        JLabel label = new JLabel("test");
 	        JPanel panel = new JPanel();
 	        frame2.add(panel);
@@ -77,7 +77,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
 	
 public static void main(String[] args) {
     FenetreGestionMission fenetreGestionMission=new  FenetreGestionMission();
-    fenetreGestionMission.setSize(600,450);
+    fenetreGestionMission.setSize(800,450);
     fenetreGestionMission.setResizable(false);
 }
 }

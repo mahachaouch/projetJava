@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,7 +28,7 @@ import Modele.Personne;
 
 public class VueGestionMission extends JPanel implements Serializable {
 	final int  MAX=100;
-	 public JScrollPane Scroll=new JScrollPane();
+	 public JList list=new JList();
 	public JTable tableview=new JTable();
 	public VueGestionMission(){
 		this.setLayout(new BorderLayout());
@@ -56,13 +57,13 @@ public class VueGestionMission extends JPanel implements Serializable {
 		Westpannel.add(scrollPane);
 		
 		
-		
 		JPanel Eastpannel=new JPanel();
 		Eastpannel.setLayout(new BorderLayout());
 		JLabel comp=new JLabel("Compétences :");
-		Eastpannel.add(comp,BorderLayout.NORTH);
+		JScrollPane Scroll=new JScrollPane(list);
 		Eastpannel.add(Scroll,BorderLayout.NORTH);
-		
+		Eastpannel.add(comp,BorderLayout.NORTH);
+		Eastpannel.add(list);
 		
 		
 		this.add(Eastpannel);

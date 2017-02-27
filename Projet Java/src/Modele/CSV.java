@@ -2,11 +2,14 @@ package Modele;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
@@ -15,6 +18,7 @@ public class CSV {
 
 	private final ArrayList<String[]> lignes = new ArrayList<String[]>();
 	private String[] ligne;
+	final int MAX=15;
 
 	public ArrayList<String[]> ReadCSVfile(File file) {
 		try {
@@ -33,55 +37,73 @@ public class CSV {
 	}
 	
 	
-	public String[] getCompetences(int idEmploye){
-		String[] tabIdCompetence=null;
+	public Competence[] getCompetences(int idEmploye) throws IOException{
+		String[] tabIdCompetence=new String[MAX];
+		ligne=new String[MAX];
+		Competence[] tabComp=new Competence[MAX];
 		//Récuperer les ids des compétences
 		try {
 			String Directory = System.getProperty("user.dir");
 			Directory+="\\src\\Bd\\competences_personnel.csv";
 			BufferedReader buff = new BufferedReader(new FileReader(Directory));
+			buff.readLine();
 			while (buff.ready()) {
 				String str = buff.readLine();
 				//DONNE FALSE ALORS QUE SPLIT ET IDEPLOYE SONT EGAUX
-				System.out.println("Idligne="+str.split(";")[0]);
-				System.out.println("Employe="+String.valueOf(idEmploye));
-				System.out.println(str.split(";")[0]==String.valueOf(idEmploye));
-				System.out.println();
+//				System.out.println("Idligne="+str.split(";")[0]);
+//				System.out.println("Employe="+String.valueOf(idEmploye));
+//				System.out.println(str.split(";")[0].equals(String.valueOf(idEmploye)));
+//				System.out.println();
 				if(str.split(";")[0].equals(String.valueOf(idEmploye))){
+						
 					for(int i =1 ;i<str.split(";").length;i++){
-				ligne[i-1] =str.split(";")[i] ;
-				System.out.println("i="+(str.split(";")[i]));
-					}
+					System.out.println("i="+i);
+					System.out.println("i="+(str.split(";")[i]));
+				    ligne[i-1] =str.split(";")[i] ;	
+//				    for(String a : ligne)
+//						System.out.println(a);
+						}
 				}
 			}
-			tabIdCompetence=ligne;
+			int i=0;
+			for(String a : ligne){
+				if(a!=null){
+				tabIdCompetence[i]=a;
+				i++;
+				}
+			}
 			System.out.println("OK1");
-		} catch (Exception e) {
+		} catch (FileNotFoundException e) {
 			String errmsg = e.getMessage();
 			System.out.println("File not found:" + errmsg);
 		}
 		
 		//Récuperer les compétences
 		try {
+			ligne=new String[MAX];
 			String Directory = System.getProperty("user.dir");
-			Directory+="\\src\\Bd\\list_competences.csv";
+			Directory+="\\src\\Bd\\liste_competences.csv";
 			BufferedReader buff = new BufferedReader(new FileReader(Directory));
-			
+			int i=0;
+			int compteur=0;
 			while (buff.ready()) {
-				int i=0;
+				i=0;
 				String str = buff.readLine();
-				while(i<tabIdCompetence.length)
-				if(str.split(";")[0]==String.valueOf(tabIdCompetence[i]))
-					for(int x =1 ;x<str.split(";").length;i++)
-				ligne[x-1] =str.split(";")[x] ;
-				System.out.println(Arrays.toString(ligne));
+		        while(i<tabIdCompetence.length){
+				if(str.split(";")[0].equals(String.valueOf(tabIdCompetence[i]))){
+				tabComp[compteur] =new Competence(str.split(";")[0],str.split(";")[1],str.split(";")[2]);
+				compteur++;
 				System.out.println("OK2");
 			}
-		} catch (Exception e) {
+				i++;
+			}
+				
+			}
+		} catch (FileNotFoundException e) {
 			String errmsg = e.getMessage();
 			System.out.println("File not found:" + errmsg);
 		}
-		return ligne;
+		return tabComp;
 	}
 	
 	//ajoutre une ligne dans un csv

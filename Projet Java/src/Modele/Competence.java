@@ -4,27 +4,37 @@ public class Competence {
 	
 	@Override
 	public String toString() {
-		return "Competence [domaine=" + domaine + ", code=" + code + "]";
+		return "Competence [nomAng=" + nomAng + ", code=" + code + "]";
 	}
-	private String domaine;
+	private String nomAng;
+	private String nomFr;
 	private String code;
 	
-	public Competence(String domaine, String code) {
-		this.domaine = domaine;
+	public Competence( String code,String nomAng,String nomFr) {
+		this.nomAng = nomAng;
 		this.code = code;
+		this.nomFr=nomFr;
 	}
  
-	public String getDomaine() {
-		return domaine;
+	public String getNomAng() {
+		return nomAng;
 	}
-	public void setDomaine(String domaine) {
-		this.domaine = domaine;
+	public void setNomAng(String nomAng) {
+		this.nomAng = nomAng;
 	}
 	public String getCode() {
 		return code;
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getNomFr() {
+		return nomFr;
+	}
+
+	public void setNomFr(String nomFr) {
+		this.nomFr = nomFr;
 	}
 	 
 }

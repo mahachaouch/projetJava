@@ -18,14 +18,21 @@ public class MissionPlanifiee extends MissionEnPreparation{
 	 
 	 //ajoute une personne Ã  la liste des personnes ayant la compÃ©tence donnÃ©e
 	 public void affecterPersonne(Personne p,Competence Compet){
-		 
+		 String classPErmission = "Modele.PersonneExterne";
+		
 		 if(this.ListPersonneParCometence.containsKey(Compet)) {
-			 this.ListPersonneParCometence.get(Compet).add(p);
-			 p.augmenterNbMission();
+			 //verifier si la mission autorise d embaucher des personne externe + vérifier si la personne est externe ou pas
+			 if(this.getAutorisExterne() && !p.getClass().getName().equals(classPErmission)){
+				 this.ListPersonneParCometence.get(Compet).add(p);
+				 p.augmenterNbMission();
+			 }
 		 } else {
-			 ArrayList<Personne> l = new ArrayList<Personne>();
-			 l.add(p);
-			 this.ListPersonneParCometence.put(Compet,l);
+			 //verifier si la mission autorise d embaucher des personne externe + vérifier si la personne est externe ou pas
+			 if(this.getAutorisExterne() && !p.getClass().getName().equals(classPErmission)){
+				 ArrayList<Personne> l = new ArrayList<Personne>();
+				 l.add(p);
+				 this.ListPersonneParCometence.put(Compet,l);
+			 }
 		 }
 	 }
 	 

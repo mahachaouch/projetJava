@@ -12,9 +12,12 @@ public class Main {
 		ArrayList<Personne> allPersons = new ArrayList<Personne>();
 
 		
-		Personne p = new Personne("Jean","Dupont", 1, new Date("01/01/2017"));
-		Personne p1 = new Personne("Julia","Dupont", 1, new Date("02/01/2017"));
-		Personne p2 = new Personne("Julien","Marcel", 1, new Date("01/02/2017"));
+		Personne p = new PersonneExterne("Jean","Dupont", 1);
+		Personne p1 = new Personne("Julia","Dupont", 1);
+		Personne p2 = new PersonneExterne("Julien","Marcel", 1);
+		
+		System.out.println(p2.getClass().getName());
+		
 		
 		allPersons.add(p);
 		allPersons.add(p1);

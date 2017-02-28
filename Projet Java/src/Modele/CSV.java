@@ -57,8 +57,7 @@ public class CSV {
 				if(str.split(";")[0].equals(String.valueOf(idEmploye))){
 						
 					for(int i =1 ;i<str.split(";").length;i++){
-					System.out.println("i="+i);
-					System.out.println("i="+(str.split(";")[i]));
+					
 				    ligne[i-1] =str.split(";")[i] ;	
 //				    for(String a : ligne)
 //						System.out.println(a);
@@ -72,7 +71,7 @@ public class CSV {
 				i++;
 				}
 			}
-			System.out.println("OK1");
+			
 		} catch (FileNotFoundException e) {
 			String errmsg = e.getMessage();
 			System.out.println("File not found:" + errmsg);
@@ -93,7 +92,7 @@ public class CSV {
 				if(str.split(";")[0].equals(String.valueOf(tabIdCompetence[i]))){
 				tabComp[compteur] =new Competence(str.split(";")[0],str.split(";")[1],str.split(";")[2]);
 				compteur++;
-				System.out.println("OK2");
+				
 			}
 				i++;
 			}

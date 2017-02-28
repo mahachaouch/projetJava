@@ -8,7 +8,16 @@ public abstract class Mission  {
 	//la durée d une mission se mesure en mois
 	private int duree;
 	private int codeMission;
+	private Boolean autorisExterne=true;
 	
+	public Boolean getAutorisExterne() {
+		return autorisExterne;
+	}
+
+	public void setAutorisExterne(Boolean autorisExterne) {
+		this.autorisExterne = autorisExterne;
+	}
+
 	public Date getDateDebut() {
 		return DateDebut;
 	}

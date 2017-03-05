@@ -22,6 +22,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
 	
 	private VueGestionMission vueGestionMission;
 	private VueCompetences vueCompetences;
+	private VueMissions vueMissions;
 	public FenetreGestionMission(){
     this.setTitle("Gestionnaire des Missions");
     this.setLayout(new BorderLayout());
@@ -66,9 +67,10 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     
     this.vueGestionMission=new VueGestionMission();
     this.vueCompetences = new VueCompetences();
+    this.vueMissions= new VueMissions();
     panelUser.add(this.vueGestionMission,BorderLayout.CENTER);
     panelCompetence.add(this.vueCompetences,BorderLayout.CENTER);
-    panelMission.add(new JLabel("Les missions"));
+    panelMission.add(this.vueMissions,BorderLayout.CENTER);
     this.add(tabbedPane);
     
     //Ajout de la vue Competences

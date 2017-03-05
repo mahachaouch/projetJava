@@ -108,11 +108,11 @@ public class CSV {
 	//ajoutre une ligne dans un csv
 	// line doit etre sous la forme : "aa;bb;cc" ceci va etre géré par l appelant
 	//file : fichier dans lequel on souhaite ajouter une ligne
-		public void addRawCsv(File file,String line) throws IOException{
+		public static void addRawCsv(String fileNAme,String line) throws IOException{
 			
 			String seperator = ";" ;
 			
-			String fileNAme= file.getName();
+			//String fileNAme= file.getName();
 			String Directory = System.getProperty("user.dir");
 			Directory+="\\src\\Bd\\"+fileNAme ;
 			
@@ -127,9 +127,6 @@ public class CSV {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} //true = append
-			
-			//adapt line to csv format(dans le cas ou on recoit un String "aa bb bb"
-			//line=line.replaceAll(" ", ";");
 			
 			//write the line
 			outfile.write(line + "\n");
@@ -178,11 +175,12 @@ public class CSV {
 		public static void main(String[] args) throws IOException{
 			String Directory = System.getProperty("user.dir");
 			Directory+="\\src\\Bd\\liste_mission.csv";
-			test(Directory,"5;20/02/2017;6");
+			//File file = new File(Directory);
 			
 			//updateCSV(Directory,"xxx",2,2);
 			
 			//String s1="hello there bla bla2";
+			addRawCsv("liste_mission.csv","22;29/03/2017;4");
 			
 		}
 }

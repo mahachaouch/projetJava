@@ -63,7 +63,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     //tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
     
     JPanel panelMission = new JPanel(new GridLayout(1,1));
-    tabbedPane.addTab("Mission", iconMission, panelMission);
+    tabbedPane.addTab("Missions", iconMission, panelMission);
     
     this.vueGestionMission=new VueGestionMission();
     this.vueCompetences = new VueCompetences();

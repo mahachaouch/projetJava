@@ -28,7 +28,7 @@ public class VueMissions extends JPanel implements Serializable {
 	
 		this.setLayout(new BorderLayout());
 		
-		String[] columnNames = {"Code","Domaine","traduction"};
+		String[] columnNames = {"Code","Date début","durée(mois)"};
 		
 		//Ajouter les donnÃ©es CSV	
 		String Directory = System.getProperty("user.dir");

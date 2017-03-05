@@ -43,13 +43,13 @@ public class VueCompetences extends JPanel implements Serializable {
 		
 		
 		JTable tableview=new JTable(array,columnNames);
-		JScrollPane scrollPane = new JScrollPane(tableview);
 		tableview.setFillsViewportHeight(true);
 		 JPanel Westpannel= new JPanel();
 		 Westpannel.setLayout(new BorderLayout());
 		 Westpannel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
 		 Westpannel.add(tableview, BorderLayout.WEST);
-		  Westpannel.add(scrollPane);
+		 JScrollPane scrollPane = new JScrollPane(tableview);
+		 Westpannel.add(scrollPane);
 		 this.add(Westpannel, "West");
 		
 	

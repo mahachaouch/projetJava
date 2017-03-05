@@ -33,8 +33,6 @@ public class VueGestionMission extends JPanel implements Serializable {
 	public VueGestionMission(){
 		this.setLayout(new BorderLayout());
 
-		
-		JScrollPane scrollPane = new JScrollPane(tableview);
 		tableview.setFillsViewportHeight(true);
 		
 		//Ajouter les données CSV
@@ -54,6 +52,7 @@ public class VueGestionMission extends JPanel implements Serializable {
 		Westpannel.setLayout(new BorderLayout());
 		Westpannel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
 		Westpannel.add(tableview, BorderLayout.WEST);
+		JScrollPane scrollPane = new JScrollPane(tableview);
 		Westpannel.add(scrollPane);
 		
 		

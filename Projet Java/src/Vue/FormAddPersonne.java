@@ -53,36 +53,36 @@ public class FormAddPersonne {
 		                    
 		                    window.frame.setTitle("Ajout d'une personne");
 		                    
-		                    textField = new JTextField();
-		            		textField.setBounds(128, 28, 86, 20);
-		            		frame.getContentPane().add(textField);
-		            		textField.setColumns(10);
+		            		 textField = new JTextField();
+			                 textField.setBounds(152, 62, 86, 20);
+			            	frame.getContentPane().add(textField);
+			            	textField.setColumns(10);
 		            		
-		            		JLabel lblPrenom = new JLabel("Prénom");
-		            		lblPrenom.setBounds(80, 31, 46, 14);
+		            		JLabel lblPrenom = new JLabel("PrÃ©nom");
+		            		lblPrenom.setBounds(80, 65, 60, 14);
 		            		frame.getContentPane().add(lblPrenom);
 		            		
 		            		JLabel lblName = new JLabel("Nom");
-		            		lblName.setBounds(80, 115, 46, 14);
+		            		lblName.setBounds(80, 115, 80, 14);
 		            		frame.getContentPane().add(lblName);
 		            		
 		            		textField_2 = new JTextField();
-		            		textField_2.setBounds(128, 112, 247, 17);
+		            		textField_2.setBounds(152, 112, 247, 20);
 		            		frame.getContentPane().add(textField_2);
 		            		textField_2.setColumns(10);
 		            		
-		            		JLabel lblDate = new JLabel("Date entrée");
-		            		lblDate.setBounds(80, 162, 46, 14);
+		            		JLabel lblDate = new JLabel("Date entrÃ©e");
+		            		lblDate.setBounds(80, 162, 72, 14);
 		            		frame.getContentPane().add(lblDate);
 		            		
 		            		
 		            		textField_1 = new JTextField();
-		            		textField_1.setBounds(126, 157, 212, 40);
+		            		textField_1.setBounds(152, 157, 247, 20);
 		            		frame.getContentPane().add(textField_1);
 		            		textField_1.setColumns(10);
 		            		
 		            		JLabel lblExterne = new JLabel("Interne :");
-		            		lblExterne.setBounds(65, 228, 46, 14);
+		            		lblExterne.setBounds(80, 228, 46, 14);
 		            		frame.getContentPane().add(lblExterne);
 		            		
 		            		
@@ -125,21 +125,21 @@ public class FormAddPersonne {
 		            				if(textField.getText().isEmpty()||(textField_2.getText().isEmpty())||(textField_1.getText().isEmpty())||((radioButton_1.isSelected())&&(radioButton.isSelected())))
 		            					JOptionPane.showMessageDialog(null, "Veuillez remplir le formulaire svp");
 		            				else{	
-			            				JOptionPane.showMessageDialog(null, "Personne ajoutée");
+			            				JOptionPane.showMessageDialog(null, "Personne ajoutÃ©e");
 			            				//ajouter la nouvelle mission dans le fichier liste_mission
 			            				String seperator=";";
 			            				String choosen;
 			            				int lastId=Integer.parseInt(CSV.getLasIdLinePersonne("liste_personnel.csv"));
 			            				lastId++;
 			            				String id =""+ lastId;
-			            				//vérifier quel radioButton a été choisi
+			            				//vÃ©rifier quel radioButton a Ã©tÃ© choisi
 			            				if(radioButton_1.isSelected()){
 			            					choosen=radioButton_1.getText();
 			            				}else{
 			            					choosen=radioButton.getText();
 			            				}
 			            				
-			            				//préparer la line à ajouter dans le fichier
+			            				//prÃ©parer la line Ã  ajouter dans le fichier
 			            				String line = textField.getText()+seperator+textField_2.getText()+seperator+textField_1.getText()+seperator+id+seperator+choosen;
 			            				try {
 											CSV.addRawCsv("liste_personnel.csv",line);
@@ -155,17 +155,14 @@ public class FormAddPersonne {
 		            		
 		            		
 		                } catch (Exception e) {
-		
 		                    e.printStackTrace();
 				                }
-		
 		            }
 		
 		        });
 		
 		    }
 		
-		 
 		
 		    /**
 		
@@ -180,7 +177,6 @@ public class FormAddPersonne {
 		    }
 		
 		 
-		
 		    /**
 		
 		     * Initialize the contents of the frame.
@@ -190,14 +186,10 @@ public class FormAddPersonne {
 		    private void initialize() {
 		
 		        frame = new JFrame();
-		
 		        frame.setBounds(100, 100, 730, 489);
-		
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		        frame.getContentPane().setLayout(null);
-		
-		 
+	
 		
 		       }
 		

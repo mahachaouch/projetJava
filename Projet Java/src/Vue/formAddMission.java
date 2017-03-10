@@ -20,31 +20,31 @@ public class FormAddMission extends JFrame {
 		this.setTitle("Ajout d'une mission");
 
 		JTextField textField = new JTextField();
-		textField.setBounds(128, 28, 86, 20);
+		textField.setBounds(162, 62, 86, 20);
 		this.getContentPane().add(textField);
 		textField.setColumns(10);
 
-		JLabel lblName = new JLabel("Code Mission");
-		lblName.setBounds(80, 31, 46, 14);
-		this.getContentPane().add(lblName);
+		JLabel lblCode = new JLabel("Code Mission");
+		lblCode.setBounds(80, 65, 90, 14);
+		this.getContentPane().add(lblCode);
 
-		JLabel lblEmailId = new JLabel("Date début");
-		lblEmailId.setBounds(80, 115, 46, 14);
-		this.getContentPane().add(lblEmailId);
+		JLabel lblDate = new JLabel("Date dÃ©but");
+		lblDate.setBounds(80, 115, 80, 14);
+		this.getContentPane().add(lblDate);
 
 		JTextField textField_2 = new JTextField();
-		textField_2.setBounds(128, 112, 247, 17);
+		textField_2.setBounds(162, 112, 247, 20);
 		this.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 
-		JLabel lblAddress = new JLabel("Durée");
-		lblAddress.setBounds(80, 162, 46, 14);
-		this.getContentPane().add(lblAddress);
+		JLabel lblDuree = new JLabel("DurÃ©e");
+		lblDuree.setBounds(80, 162, 46, 14);
+		this.getContentPane().add(lblDuree);
 
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(126, 157, 212, 40);
-		this.getContentPane().add(textArea_1);
-		textArea_1.setColumns(10);
+		JTextField textFiled_1 = new JTextField();
+		textFiled_1.setBounds(162, 157, 247, 20);
+		this.getContentPane().add(textFiled_1);
+		textFiled_1.setColumns(10);
 
 		JButton btnClear = new JButton("Clear");
 
@@ -55,7 +55,7 @@ public class FormAddMission extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				textField_2.setText(null);
 				textField.setText(null);
-				textArea_1.setText(null);
+				textFiled_1.setText(null);
 			}
 		});
 
@@ -68,14 +68,14 @@ public class FormAddMission extends JFrame {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (textField.getText().isEmpty() || (textField_2.getText().isEmpty())
-						|| (textArea_1.getText().isEmpty()))
+						|| (textFiled_1.getText().isEmpty()))
 					JOptionPane.showMessageDialog(null, "Data Missing");
 				else {
 					JOptionPane.showMessageDialog(null, "Data Submitted");
 					// ajouter la nouvelle mission dans le fichier liste_mission
 					String seperator = ";";
 					String line = textField.getText() + seperator + textField_2.getText() + seperator
-							+ textArea_1.getText();
+							+ textFiled_1.getText();
 					//
 					try {
 						CSV.addRawCsv("liste_mission.csv", line);

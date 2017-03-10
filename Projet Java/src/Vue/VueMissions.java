@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -42,19 +43,30 @@ public class VueMissions extends JPanel implements Serializable {
 		String[][] array = new String[donneeCSV.size()][0];
 		donneeCSV.toArray(array);
 		
-		
 		JTable tableview=new JTable(array,columnNames);
 		tableview.setFillsViewportHeight(true);
-		 JPanel Westpannel= new JPanel();
-		 Westpannel.setLayout(new BorderLayout());
-		 Westpannel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
-		 Westpannel.add(tableview, BorderLayout.WEST);
-		 JScrollPane scrollPane = new JScrollPane(tableview);
-		 Westpannel.add(scrollPane);
-		 this.add(Westpannel, "West");
+		JPanel westPanel= new JPanel();
+		westPanel.setLayout(new BorderLayout());
+		westPanel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
+		westPanel.add(tableview, BorderLayout.WEST);
+		JScrollPane scrollPane = new JScrollPane(tableview);
+		westPanel.add(scrollPane);
+		this.add(westPanel, "West");
 		
+		JPanel eastPanel = new JPanel();
+		JButton boutonAjouter = new JButton("Ajouter");
+		boutonAjouter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boutonAjouterActionPerformed(e);
+			};
+		});
+		eastPanel.add(boutonAjouter);
+		this.add(eastPanel);
+	}
 	
-		
+	public void boutonAjouterActionPerformed(ActionEvent e) {
+		FormAddMission form = new FormAddMission();
 	}
 	
 	

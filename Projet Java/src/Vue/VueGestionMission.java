@@ -27,10 +27,10 @@ import Modele.CSVModele;
 import Modele.Personne;
 
 public class VueGestionMission extends JPanel implements Serializable {
-	final int  MAX=100;
-	 public JList list=new JList();
-	public JTable tableview=new JTable();
-	public VueGestionMission(){
+		final int  MAX=100;
+		public JList list=new JList();
+	 	public JTable tableview=new JTable();
+		public VueGestionMission(){
 		this.setLayout(new BorderLayout());
 
 		tableview.setFillsViewportHeight(true);
@@ -48,25 +48,25 @@ public class VueGestionMission extends JPanel implements Serializable {
 		ListSelectionModel listSelectionModel = tableview.getSelectionModel();        
 		listSelectionModel.addListSelectionListener(new ControleurGestionMission(this));
 	
-		JPanel Westpannel= new JPanel();
-		Westpannel.setLayout(new BorderLayout());
-		Westpannel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
-		Westpannel.add(tableview, BorderLayout.WEST);
+		JPanel westPanel= new JPanel();
+		westPanel.setLayout(new BorderLayout());
+		westPanel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
+		westPanel.add(tableview, BorderLayout.WEST);
 		JScrollPane scrollPane = new JScrollPane(tableview);
-		Westpannel.add(scrollPane);
+		westPanel.add(scrollPane);
 		
 		
-		JPanel Eastpannel=new JPanel();
-		Eastpannel.setLayout(new BorderLayout());
+		JPanel eastPanel=new JPanel();
+		eastPanel.setLayout(new BorderLayout());
 		JLabel comp=new JLabel("Compétences :");
 		JScrollPane Scroll=new JScrollPane(list);
-		Eastpannel.add(Scroll,BorderLayout.NORTH);
-		Eastpannel.add(comp,BorderLayout.NORTH);
-		Eastpannel.add(list);
+		eastPanel.add(Scroll,BorderLayout.NORTH);
+		eastPanel.add(comp,BorderLayout.NORTH);
+		eastPanel.add(list);
 		
 		
-		this.add(Eastpannel);
-		this.add(Westpannel, "West");
+		this.add(eastPanel);
+		this.add(westPanel, "West");
 	}
 }
 

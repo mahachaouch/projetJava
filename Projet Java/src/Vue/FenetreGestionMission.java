@@ -16,6 +16,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import Controleur.ControleurGestionMission;
+
 import javax.swing.ImageIcon;
 
 public class FenetreGestionMission extends JFrame implements ActionListener {
@@ -95,7 +98,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
 	
 	 /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = Test.class.getResource(path);
+        java.net.URL imgURL = ControleurGestionMission.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -117,9 +120,9 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
 	
 	
 	
-public static void main(String[] args) {
-    FenetreGestionMission fenetreGestionMission=new  FenetreGestionMission();
-    fenetreGestionMission.setSize(800,450);
-    fenetreGestionMission.setResizable(false);
-}
+	public static void main(String[] args) {
+	    FenetreGestionMission fenetreGestionMission=new  FenetreGestionMission();
+	    fenetreGestionMission.setSize(800,450);
+	    fenetreGestionMission.setResizable(false);
+	}
 }

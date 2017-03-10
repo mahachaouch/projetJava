@@ -30,7 +30,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     this.setTitle("Gestionnaire des Missions");
     this.setLayout(new BorderLayout());
 
-    //CrÃƒÂ©ation de l'item "File"
+    //Création de l'item "File"
     JMenu fichier = new JMenu("File");
     JMenuItem nouveau = new JMenuItem("Nouveau");
     fichier.add(nouveau);
@@ -39,31 +39,29 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     JMenuItem quitter = new JMenuItem("Quitter");
     fichier.add(quitter);
 
-    //CrÃƒÂ©ation de l'item "Option"
+    //Création de l'item "Option"
     JMenu option = new JMenu("Option");
 
 
-    //CrÃƒÂ©ation de la bar de menu
+    //Création de la barre de menu
     JMenuBar jMenuBar = new JMenuBar();
     jMenuBar.add(fichier);
     jMenuBar.add(option);
     
-    //Ajout de la bar de menu et de la vue ÃƒÂ  la fenetre
+    //Ajout de la barre de menu et de la vue à  la fenetre
     this.add(jMenuBar,BorderLayout.NORTH);
     
     
     JTabbedPane tabbedPane = new JTabbedPane();
-    ImageIcon iconUser = createImageIcon("user.jpg");
-    ImageIcon iconComp = createImageIcon("comp.jpg");
-    ImageIcon iconMission = createImageIcon("mission.jpg");
+    ImageIcon iconUser = new ImageIcon("././Img/user.jpg");
+    ImageIcon iconComp = new ImageIcon("././Img/comp.jpg");
+    ImageIcon iconMission = new ImageIcon("././Img/mission.jpg");
     
     JPanel panelUser = new JPanel(new GridLayout(1,1));
     tabbedPane.addTab("Utilisateurs", iconUser, panelUser);
-    //tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
      
     JPanel panelCompetence = new JPanel(new GridLayout(1,1));
     tabbedPane.addTab("Compétences", iconComp, panelCompetence);
-    //tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
     
     JPanel panelMission = new JPanel(new GridLayout(1,1));
     tabbedPane.addTab("Missions", iconMission, panelMission);
@@ -95,18 +93,6 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
         panel.setLayout(new GridLayout(1, 1));
         return panel;
 	 }
-	
-	 /** Returns an ImageIcon, or null if the path was invalid. */
-    protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = ControleurGestionMission.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
-
 
 	public void actionPerformed(ActionEvent e) {
 	        JFrame frame2 = new JFrame("Accueil");

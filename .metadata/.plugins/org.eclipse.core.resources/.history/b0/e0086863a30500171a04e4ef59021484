@@ -1,0 +1,12 @@
+package Vue;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+
+public class VuePersonneMission extends JFrame {
+	public JTable tableview=new JTable();
+	private int numMission;
+	
+	public VuePersonneMission()
+
+}

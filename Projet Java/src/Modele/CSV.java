@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -171,16 +172,67 @@ public class CSV {
 		
 		}
 		
+		//retourne le dernier id de personnel
+		public static String getLasIdLinePersonne( String fileNAme ) {
+			
+			String Directory = System.getProperty("user.dir");
+			Directory+="\\src\\Bd\\"+fileNAme ;
+			File file = new File(Directory);
+			
+		    RandomAccessFile fileHandler = null;
+		    try {
+		        fileHandler = new RandomAccessFile( file, "r" );
+		        long fileLength = fileHandler.length() - 1;
+		        StringBuilder sb = new StringBuilder();
+
+		        for(long filePointer = fileLength; filePointer != -1; filePointer--){
+		            fileHandler.seek( filePointer );
+		            int readByte = fileHandler.readByte();
+
+		            if( readByte == 0xA ) {
+		                if( filePointer == fileLength ) {
+		                    continue;
+		                }
+		                break;
+
+		            } else if( readByte == 0xD ) {
+		                if( filePointer == fileLength - 1 ) {
+		                    continue;
+		                }
+		                break;
+		            }
+
+		            sb.append( ( char ) readByte );
+		        }
+
+		        String lastLine = sb.reverse().toString();
+		        String[] array = lastLine.split(";");
+		        return array[3];
+		    } catch( java.io.FileNotFoundException e ) {
+		        e.printStackTrace();
+		        return null;
+		    } catch( java.io.IOException e ) {
+		        e.printStackTrace();
+		        return null;
+		    } finally {
+		        if (fileHandler != null )
+		            try {
+		                fileHandler.close();
+		            } catch (IOException e) {
+		                /* ignore */
+		            }
+		    }
+		}
 		
 		public static void main(String[] args) throws IOException{
-			String Directory = System.getProperty("user.dir");
-			Directory+="\\src\\Bd\\liste_mission.csv";
-			//File file = new File(Directory);
-			
+		//	String Directory = System.getProperty("user.dir");
+		//	Directory+="\\src\\Bd\\liste_mission.csv";
+		//	File file = new File(Directory);
+			System.out.println(getLasIdLinePersonne("liste_personnel.csv"));
 			//updateCSV(Directory,"xxx",2,2);
 			
 			//String s1="hello there bla bla2";
-			addRawCsv("liste_mission.csv","22;29/03/2017;4");
+			//addRawCsv("liste_mission.csv","22;29/03/2017;4");
 			
 		}
 }

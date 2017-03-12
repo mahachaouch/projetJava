@@ -28,7 +28,7 @@ public class FormAddMission extends JFrame {
 		lblCode.setBounds(80, 65, 90, 14);
 		this.getContentPane().add(lblCode);
 
-		JLabel lblDate = new JLabel("Date dÃ©but");
+		JLabel lblDate = new JLabel("Date début");
 		lblDate.setBounds(80, 115, 80, 14);
 		this.getContentPane().add(lblDate);
 
@@ -37,7 +37,7 @@ public class FormAddMission extends JFrame {
 		this.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 
-		JLabel lblDuree = new JLabel("DurÃ©e");
+		JLabel lblDuree = new JLabel("Durée");
 		lblDuree.setBounds(80, 162, 46, 14);
 		this.getContentPane().add(lblDuree);
 
@@ -60,8 +60,7 @@ public class FormAddMission extends JFrame {
 		});
 
 		JButton btnSubmit = new JButton("submit");
-		btnSubmit.setBackground(Color.BLUE);
-		btnSubmit.setForeground(Color.MAGENTA);
+		
 		btnSubmit.setBounds(65, 387, 89, 23);
 		this.getContentPane().add(btnSubmit);
 
@@ -69,9 +68,9 @@ public class FormAddMission extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (textField.getText().isEmpty() || (textField_2.getText().isEmpty())
 						|| (textFiled_1.getText().isEmpty()))
-					JOptionPane.showMessageDialog(null, "Data Missing");
+					JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs svp");
 				else {
-					JOptionPane.showMessageDialog(null, "Data Submitted");
+					JOptionPane.showMessageDialog(null, "Mission ajoutée");
 					// ajouter la nouvelle mission dans le fichier liste_mission
 					String seperator = ";";
 					String line = textField.getText() + seperator + textField_2.getText() + seperator

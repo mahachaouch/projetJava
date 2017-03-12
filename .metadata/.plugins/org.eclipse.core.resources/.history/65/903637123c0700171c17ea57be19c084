@@ -69,8 +69,6 @@ public class VueCompetences extends JPanel implements Serializable {
 	}
 	public void boutonAjouterActionPerformed(ActionEvent e) {
 		FormAddCompetence form = new FormAddCompetence();
-		form.initialize();
-		form.run();
 	}
 	
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -53,8 +54,21 @@ public class VueCompetences extends JPanel implements Serializable {
 		 this.add(Westpannel, "West");
 		
 	
+		 JPanel eastPanel = new JPanel();
+			JButton boutonAjouter = new JButton("Ajouter compétence");
+			boutonAjouter.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					boutonAjouterActionPerformed(e);
+				};
+			});
+			eastPanel.add(boutonAjouter);
+			
+			this.add(eastPanel);
 		
 	}
-	
+	public void boutonAjouterActionPerformed(ActionEvent e) {
+		FormAddCompetence form = new FormAddCompetence();
+	}
 	
 }

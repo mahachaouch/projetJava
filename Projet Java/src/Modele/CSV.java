@@ -46,7 +46,6 @@ public class CSV {
 			String Directory = System.getProperty("user.dir");
 			Directory += "\\src\\Bd\\competences_personnel.csv";
 			BufferedReader buff = new BufferedReader(new FileReader(Directory));
-			buff.readLine();
 			while (buff.ready()) {
 				String str = buff.readLine();
 				// DONNE FALSE ALORS QUE SPLIT ET IDEPLOYE SONT EGAUX
@@ -135,7 +134,7 @@ public class CSV {
 			String errmsg = e.getMessage();
 			System.out.println("File not found:" + errmsg);
 		}
-<<<<<<< HEAD
+
 
 		// Récuperer les personnes
 		try {
@@ -161,7 +160,9 @@ public class CSV {
 		} catch (FileNotFoundException e) {
 			String errmsg = e.getMessage();
 			System.out.println("File not found:" + errmsg);
-=======
+		}
+		return tabPers;
+	}
 		
 		//retourne le dernier id de personnel
 		public static String getLasIdLinePersonne( String fileNAme ) {
@@ -215,20 +216,7 @@ public class CSV {
 		    }
 		}
 		
-		public static void main(String[] args) throws IOException{
-		//	String Directory = System.getProperty("user.dir");
-		//	Directory+="\\src\\Bd\\liste_mission.csv";
-		//	File file = new File(Directory);
-			System.out.println(getLasIdLinePersonne("liste_personnel.csv"));
-			//updateCSV(Directory,"xxx",2,2);
-			
-			//String s1="hello there bla bla2";
-			//addRawCsv("liste_mission.csv","22;29/03/2017;4");
-			
->>>>>>> origin/master
-		}
-		return tabPers;
-	}
+
 
 	// ajoute une ligne dans un csv
 	// line doit etre sous la forme : "aa;bb;cc" ceci va etre géré par l

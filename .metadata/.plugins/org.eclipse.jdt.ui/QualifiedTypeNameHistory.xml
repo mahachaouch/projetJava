@@ -3,4 +3,5 @@
 <fullyQualifiedTypeName name="javax.swing.JTabbedPane"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="Controleur.ControleurGestionMission"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 </qualifiedTypeNameHistroy>

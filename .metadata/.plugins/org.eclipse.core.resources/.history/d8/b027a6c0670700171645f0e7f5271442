@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,34 +21,31 @@ import javax.swing.text.TableView;
 import org.omg.CORBA.portable.InputStream;
 
 import Modele.CSV;
+import Modele.CSVModele;
 import Modele.Competence;
 import Modele.Personne;
 import TestCSV.AppTest;
 
 public class VueMissions extends JPanel implements Serializable {
-	final int  MAX=100;
 	public JTable tableview=new JTable();
 	
 	public VueMissions(){
 	
 		this.setLayout(new BorderLayout());
 		
-		String[] columnNames = {"Code","Date début","durée(mois)"};
-		
-		//Ajouter les donnÃ©es CSV	
+		//Ajouter les données CSV	
 		String Directory = System.getProperty("user.dir");
 		Directory+="\\src\\Bd\\liste_mission.csv";
      	File file = new File(Directory);
 							
 		CSV csv = new CSV();
+		CSVModele modele = new CSVModele();
 		
 		ArrayList<String[]> donneeCSV = csv.ReadCSVfile(file);
 		
-		String[][] array = new String[donneeCSV.size()][0];
-		donneeCSV.toArray(array);
+		modele.ajouterDonnee(donneeCSV);
+		tableview.setModel(modele);
 		
-		JTable tableview=new JTable(array,columnNames);
-		tableview.setFillsViewportHeight(true);
 		JPanel westPanel= new JPanel();
 		westPanel.setLayout(new BorderLayout());
 		westPanel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
@@ -70,7 +68,15 @@ public class VueMissions extends JPanel implements Serializable {
 		boutonDetail.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boutonDetailActionPerformed(e);
+				try {
+					boutonDetailActionPerformed(e);
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			};
 		});
 		eastPanel.add(boutonDetail);
@@ -80,11 +86,11 @@ public class VueMissions extends JPanel implements Serializable {
 	
 	public void boutonAjouterActionPerformed(ActionEvent e) {
 		FormAddMission form = new FormAddMission();
+		//if(form.getClo)
 	}
 	
-	public void boutonDetailActionPerformed(ActionEvent e) {
-		CSV csv = new CSV();
-		Personne[] pers = csv.getPersonnes(Integer.parseInt(tableview.getValueAt(tableview.getSelectedRow(), 0).toString()));)(
+	public void boutonDetailActionPerformed(ActionEvent e) throws NumberFormatException, IOException {
+		VuePersonneMission persMiss = new VuePersonneMission(Integer.parseInt(this.tableview.getValueAt(this.tableview.getSelectedRow(),0).toString()));
 	}
 	
 	

@@ -1,4 +1,5 @@
 package Vue;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,55 +23,55 @@ import Modele.Personne;
 import TestCSV.AppTest;
 
 public class VueCompetences extends JPanel implements Serializable {
-	final int  MAX=100;
-	
-	public VueCompetences(){
-	
+	final int MAX = 100;
+
+	public VueCompetences() {
+
 		this.setLayout(new BorderLayout());
-		
-		String[] columnNames = {"Code","Domaine","traduction"};
-		
-		//Ajouter les donnÃ©es CSV	
+
+		String[] columnNames = { "Code", "Domaine", "traduction" };
+
+		// Ajouter les donnÃ©es CSV
 		String Directory = System.getProperty("user.dir");
-		Directory+="\\src\\Bd\\liste_competences.csv";
-     	File file = new File(Directory);
-							
+		Directory += "\\src\\Bd\\liste_competences.csv";
+		File file = new File(Directory);
+
 		CSV csv = new CSV();
-		
+
 		ArrayList<String[]> donneeCSV = csv.ReadCSVfile(file);
-		
+
 		String[][] array = new String[donneeCSV.size()][0];
 		donneeCSV.toArray(array);
-		
-		
-		JTable tableview=new JTable(array,columnNames);
+
+		JTable tableview = new JTable(array, columnNames);
 		tableview.setFillsViewportHeight(true);
-		 JPanel Westpannel= new JPanel();
-		 Westpannel.setLayout(new BorderLayout());
-		 Westpannel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
-		 Westpannel.add(tableview, BorderLayout.WEST);
-		 JScrollPane scrollPane = new JScrollPane(tableview);
-		 Westpannel.add(scrollPane);
-		 this.add(Westpannel, "West");
-		
-	
-		 JPanel eastPanel = new JPanel();
-			JButton boutonAjouter = new JButton("Ajouter compétence");
-			boutonAjouter.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					boutonAjouterActionPerformed(e);
-				};
-			});
-			eastPanel.add(boutonAjouter);
-			
-			this.add(eastPanel);
-		
+		JPanel Westpannel = new JPanel();
+		Westpannel.setLayout(new BorderLayout());
+		Westpannel.add(tableview.getTableHeader(), BorderLayout.PAGE_START);
+		Westpannel.add(tableview, BorderLayout.WEST);
+		JScrollPane scrollPane = new JScrollPane(tableview);
+		Westpannel.add(scrollPane);
+		this.add(Westpannel, "West");
+
+		JPanel eastPanel = new JPanel();
+		JButton boutonAjouter = new JButton("Ajouter compétence");
+		boutonAjouter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boutonAjouterActionPerformed(e);
+			};
+		});
+		eastPanel.add(boutonAjouter);
+
+		this.add(eastPanel);
+
 	}
+
 	public void boutonAjouterActionPerformed(ActionEvent e) {
 		FormAddCompetence form = new FormAddCompetence();
 		form.initialize();
 		form.run();
+
 	}
-	
+
 }

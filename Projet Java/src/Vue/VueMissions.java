@@ -85,7 +85,7 @@ public class VueMissions extends JPanel implements Serializable {
 	}
 	
 	public void boutonAjouterActionPerformed(ActionEvent e) {
-		FormAddMission form = new FormAddMission();
+		FormAddMission form = new FormAddMission(this);
 	}
 	
 	public void boutonDetailActionPerformed(ActionEvent e) throws NumberFormatException, IOException {

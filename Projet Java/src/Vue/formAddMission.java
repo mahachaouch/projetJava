@@ -1,11 +1,15 @@
 package Vue;
 
 import Modele.CSV;
+import Modele.CSVModele;
+
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,9 +18,9 @@ import javax.swing.JTextField;
 
 
 public class FormAddMission extends JFrame {
-
-	public FormAddMission() {
-
+	VueMissions vm;
+	public FormAddMission(VueMissions vm) {
+		this.vm=vm;
 		this.setTitle("Ajout d'une mission");
 
 		JTextField textField = new JTextField();
@@ -78,6 +82,14 @@ public class FormAddMission extends JFrame {
 					//
 					try {
 						CSV.addRawCsv("liste_mission.csv", line);
+						String Directory = System.getProperty("user.dir");
+						Directory+="\\src\\Bd\\liste_mission.csv";
+						File fichier=new File(Directory);
+						CSV csv = new CSV();
+						CSVModele modele = new CSVModele();
+						ArrayList<String[]> donneeCSV = csv.ReadCSVfile(fichier);
+						modele.ajouterDonnee(donneeCSV);
+						vm.tableview.setModel(modele);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

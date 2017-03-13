@@ -54,7 +54,7 @@ public class VuePersonneMission extends JFrame {
 		ArrayList<String[]> donneeCSVP = csvP.ReadCSVfile(fileP);
 		for(String[] all : donneeCSVP) {
 			for (String p : personnes) {
-				if (all[3].equals(p)) {
+				if (all[0].equals(p)) {
 					personnesAssigne.add(all);
 				}
 			}
@@ -133,7 +133,7 @@ public class VuePersonneMission extends JFrame {
 		for(String [] lines : donneeCSVMP) {
 			if (lines[0].equals(Integer.toString(this.numMission))) {
 				for(int i=1;i<lines.length;i++) {
-					if(lines[i].equals(tableview.getValueAt(row, 3))) {
+					if(lines[i].equals(tableview.getValueAt(row, 0))) {
 						lines[i] = "";
 					}
 					System.out.println(lines[i]);

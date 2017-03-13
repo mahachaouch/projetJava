@@ -3,7 +3,9 @@ package Vue;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Modele.CSV;
+import Modele.CSVModele;
 
 public class FormAddCompetence extends JFrame {
 
@@ -19,7 +22,12 @@ public class FormAddCompetence extends JFrame {
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private static JTextField textField_2;
-
+	private VueCompetences vc;
+	
+	public FormAddCompetence(VueCompetences vc){
+		this.vc=vc;
+		
+	}
 	public void run() {
 
 		try {
@@ -92,6 +100,14 @@ public class FormAddCompetence extends JFrame {
 								+ textField_1.getText();
 						try {
 							CSV.addRawCsv("liste_competences.csv", line);
+							String Directory = System.getProperty("user.dir");
+							Directory+="\\src\\Bd\\liste_competences.csv";
+							File fichier=new File(Directory);
+							CSV csv = new CSV();
+							CSVModele modele = new CSVModele();
+							ArrayList<String[]> donneeCSV = csv.ReadCSVfile(fichier);
+							modele.ajouterDonnee(donneeCSV);
+							vc.tableview.setModel(modele);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

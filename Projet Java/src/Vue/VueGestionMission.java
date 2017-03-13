@@ -3,12 +3,15 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -30,6 +33,7 @@ public class VueGestionMission extends JPanel implements Serializable {
 		final int  MAX=100;
 		public JList list=new JList();
 	 	public JTable tableview=new JTable();
+	 	JButton Bajouter;
 		public VueGestionMission(){
 		this.setLayout(new BorderLayout());
 
@@ -55,18 +59,42 @@ public class VueGestionMission extends JPanel implements Serializable {
 		JScrollPane scrollPane = new JScrollPane(tableview);
 		westPanel.add(scrollPane);
 		
-		
 		JPanel eastPanel=new JPanel();
 		eastPanel.setLayout(new BorderLayout());
 		JLabel comp=new JLabel("Compétences :");
 		JScrollPane Scroll=new JScrollPane(list);
+		 Bajouter=new JButton("Ajouter");
+		Bajouter.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				openAjouter(e);
+			}
+		});
+		JButton BModifier=new JButton("Modifier");
+		JButton BSupprimer=new JButton("Supprimer");
 		eastPanel.add(Scroll,BorderLayout.NORTH);
 		eastPanel.add(comp,BorderLayout.NORTH);
+		eastPanel.add(list);
+		
+		
+		//SouthEast Pane
+		JPanel SouthEast =new JPanel();
+		SouthEast.setLayout(new FlowLayout());
+		SouthEast.add(Bajouter);
+		SouthEast.add(BModifier);
+		SouthEast.add(BSupprimer);	
+		eastPanel.add(SouthEast,BorderLayout.SOUTH);
 		eastPanel.add(list);
 		
 		
 		this.add(eastPanel);
 		this.add(westPanel, "West");
 	}
+		
+		//Action Event
+		private void openAjouter(ActionEvent e) {
+			VueAjoutPersonne Va=new VueAjoutPersonne(this);	
+		}
+
 }
 

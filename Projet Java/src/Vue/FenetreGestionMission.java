@@ -31,25 +31,25 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     this.setLayout(new BorderLayout());
 
     //Création de l'item "File"
-    JMenu fichier = new JMenu("File");
-    JMenuItem nouveau = new JMenuItem("Nouveau");
-    fichier.add(nouveau);
-    JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
-    fichier.add(sauvegarder);
-    JMenuItem quitter = new JMenuItem("Quitter");
-    fichier.add(quitter);
+//    JMenu fichier = new JMenu("File");
+//    JMenuItem nouveau = new JMenuItem("Nouveau");
+//    fichier.add(nouveau);
+//    JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
+//    fichier.add(sauvegarder);
+//    JMenuItem quitter = new JMenuItem("Quitter");
+//    fichier.add(quitter);
 
     //Création de l'item "Option"
-    JMenu option = new JMenu("Option");
+   // JMenu option = new JMenu("Option");
 
 
     //Création de la barre de menu
-    JMenuBar jMenuBar = new JMenuBar();
-    jMenuBar.add(fichier);
-    jMenuBar.add(option);
+//    JMenuBar jMenuBar = new JMenuBar();
+//    jMenuBar.add(fichier);
+//    jMenuBar.add(option);
     
     //Ajout de la barre de menu et de la vue à  la fenetre
-    this.add(jMenuBar,BorderLayout.NORTH);
+   // this.add(jMenuBar,BorderLayout.NORTH);
     
     
     JTabbedPane tabbedPane = new JTabbedPane();
@@ -58,7 +58,7 @@ public class FenetreGestionMission extends JFrame implements ActionListener {
     ImageIcon iconMission = new ImageIcon("././Img/mission.jpg");
     
     JPanel panelUser = new JPanel(new GridLayout(1,1));
-    tabbedPane.addTab("Utilisateurs", iconUser, panelUser);
+    tabbedPane.addTab("Personnels", iconUser, panelUser);
      
     JPanel panelCompetence = new JPanel(new GridLayout(1,1));
     tabbedPane.addTab("Compétences", iconComp, panelCompetence);

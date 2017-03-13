@@ -24,7 +24,7 @@ import TestCSV.AppTest;
 
 public class VueCompetences extends JPanel implements Serializable {
 	final int MAX = 100;
-
+	JTable tableview=new JTable();
 	public VueCompetences() {
 
 		this.setLayout(new BorderLayout());
@@ -43,7 +43,7 @@ public class VueCompetences extends JPanel implements Serializable {
 		String[][] array = new String[donneeCSV.size()][0];
 		donneeCSV.toArray(array);
 
-		JTable tableview = new JTable(array, columnNames);
+		tableview = new JTable(array, columnNames);
 		tableview.setFillsViewportHeight(true);
 		JPanel Westpannel = new JPanel();
 		Westpannel.setLayout(new BorderLayout());
@@ -68,7 +68,7 @@ public class VueCompetences extends JPanel implements Serializable {
 	}
 
 	public void boutonAjouterActionPerformed(ActionEvent e) {
-		FormAddCompetence form = new FormAddCompetence();
+		FormAddCompetence form = new FormAddCompetence(this);
 		form.initialize();
 		form.run();
 

@@ -45,6 +45,7 @@ public class VueAjoutPersonne extends JFrame{
 	JTextField tDate=new JTextField();
 	JButton ok=new JButton("Valider");
 	JButton annuler=new JButton("Annuler");
+	
  public VueAjoutPersonne(VueGestionMission vgm){
 	 this.vgm=vgm;
 	 JPanel main =new JPanel();

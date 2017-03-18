@@ -284,13 +284,13 @@ public class CSV {
 
 	public static void main(String[] args) throws IOException {
 		String Directory = System.getProperty("user.dir");
-		Directory += "\\src\\Bd\\liste_mission.csv";
+		Directory += "\\src\\Bd\\liste_personnel.csv";
 		// File file = new File(Directory);
 
-		// updateCSV(Directory,"xxx",2,2);
+		 updateCSV(Directory,"xxx",2,2);
 
 		// String s1="hello there bla bla2";
-		addRawCsv("liste_mission.csv", "22;29/03/2017;4");
+		//addRawCsv("liste_mission.csv", "22;29/03/2017;4");
 
 	}
 }

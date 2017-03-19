@@ -93,7 +93,7 @@ public class VueGestionMission extends JPanel implements Serializable {
 		
 		//Action Event
 		private void openAjouter(ActionEvent e) {
-			VueAjoutPersonne Va=new VueAjoutPersonne(this);	
+			//VueAjoutPersonne Va=new VueAjoutPersonne(this);	
 		}
 
 }

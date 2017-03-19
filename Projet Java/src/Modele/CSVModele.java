@@ -64,4 +64,8 @@ public class CSVModele extends AbstractTableModel {
 		donnee.add(new String[] { "", "", "", "" });
 		this.fireTableDataChanged();
 	}
+	
+	public ArrayList<String[]> getDonnee() {
+		return this.donnee;
+	}
 }

@@ -1,7 +1,0 @@
-package Controleur;
-
-import javax.swing.event.ListSelectionListener;
-
-public class ControleurMission implements ListSelectionListener {{
-
-}

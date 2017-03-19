@@ -256,7 +256,7 @@ public class CSV {
 
 		// Read existing file
 		CSVReader reader = new CSVReader(new FileReader(inputFile), ';');
-		ArrayList<String[]> csvBody = (ArrayList) reader.readAll();
+		ArrayList<String[]> csvBody =  (ArrayList<String[]>) reader.readAll();
 		// get CSV row column and replace with by using row and column
 		csvBody.get(row)[col] = replace;
 		reader.close();
@@ -285,9 +285,9 @@ public class CSV {
 	public static void main(String[] args) throws IOException {
 		String Directory = System.getProperty("user.dir");
 		Directory += "\\src\\Bd\\liste_personnel.csv";
-		// File file = new File(Directory);
+		 //File file = new File(Directory);
 
-		 updateCSV(Directory,"xxx",2,2);
+		 updateCSV(Directory,"yyy",2,0);
 
 		// String s1="hello there bla bla2";
 		//addRawCsv("liste_mission.csv", "22;29/03/2017;4");

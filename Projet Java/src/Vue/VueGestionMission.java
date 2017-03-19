@@ -71,6 +71,12 @@ public class VueGestionMission extends JPanel implements Serializable {
 			}
 		});
 		JButton BModifier=new JButton("Modifier");
+		BModifier.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				openModifier(e);
+			}
+		});
 		JButton BSupprimer=new JButton("Supprimer");
 		eastPanel.add(Scroll,BorderLayout.NORTH);
 		eastPanel.add(comp,BorderLayout.NORTH);
@@ -94,6 +100,11 @@ public class VueGestionMission extends JPanel implements Serializable {
 		//Action Event
 		private void openAjouter(ActionEvent e) {
 			//VueAjoutPersonne Va=new VueAjoutPersonne(this);	
+		}
+		
+		//Ouvrir modifier
+		private void openModifier(ActionEvent e){
+			VueModifierPersonne Vm=new VueModifierPersonne(this);
 		}
 
 }

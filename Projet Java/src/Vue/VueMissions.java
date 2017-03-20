@@ -28,7 +28,6 @@ import Modele.CSVModele;
 import Modele.Competence;
 import Modele.MissionEnPreparation;
 import Modele.Personne;
-import TestCSV.AppTest;
 
 public class VueMissions extends JPanel implements Serializable {
 	public JTable tableview=new JTable();

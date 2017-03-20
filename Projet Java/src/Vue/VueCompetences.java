@@ -25,7 +25,6 @@ import org.omg.CORBA.portable.InputStream;
 import Modele.CSV;
 import Modele.CSVModele;
 import Modele.Personne;
-import TestCSV.AppTest;
 
 public class VueCompetences extends JPanel implements Serializable {
 	final int MAX = 100;

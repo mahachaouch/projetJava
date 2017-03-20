@@ -89,6 +89,7 @@ public class VueGestionMission extends JPanel implements Serializable {
 				try {
 					supprimerPers(e);
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

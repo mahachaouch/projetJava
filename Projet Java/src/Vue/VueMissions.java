@@ -85,23 +85,6 @@ public class VueMissions extends JPanel implements Serializable {
 		});
 		eastPanel.add(boutonDetail);
 		
-		JButton competMission = new JButton("Compétences mission");
-		competMission.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					competMissionActionPerformed(e);
-				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			};
-		});
-		eastPanel.add(competMission);
-		
 		JButton suppMission = new JButton("Supprimer");
 		suppMission.addActionListener(new ActionListener() {
 			@Override
@@ -160,24 +143,15 @@ public class VueMissions extends JPanel implements Serializable {
 	
 	public void boutonDetailActionPerformed(ActionEvent e) throws NumberFormatException, IOException {
 		VuePersonneMission persMiss = new VuePersonneMission(Integer.parseInt(this.tableview.getValueAt(this.tableview.getSelectedRow(),0).toString()));
+		//en 1er lieu on concidére la mission "en préparation"
+				int codeMission =  Integer.parseInt(this.tableview.getValueAt(this.tableview.getSelectedRow(),0).toString());
+				Date dateDebut = new Date(this.tableview.getValueAt(this.tableview.getSelectedRow(),1).toString());
+				int duree = Integer.parseInt(this.tableview.getValueAt(this.tableview.getSelectedRow(),2).toString());
+				MissionEnPreparation m1= new MissionEnPreparation();
+				m1.setCodeMission(codeMission);
+				m1.setDateDebut(dateDebut);
+				m1.setDuree(duree);
 	}
 	
-	public void competMissionActionPerformed(ActionEvent e)throws NumberFormatException, IOException {
-		//en 1er lieu on concidére la mission "en préparation"
-		int codeMission =  Integer.parseInt(this.tableview.getValueAt(this.tableview.getSelectedRow(),0).toString());
-		Date dateDebut = new Date(this.tableview.getValueAt(this.tableview.getSelectedRow(),1).toString());
-		int duree = Integer.parseInt(this.tableview.getValueAt(this.tableview.getSelectedRow(),2).toString());
-		MissionEnPreparation m1= new MissionEnPreparation();
-		m1.setCodeMission(codeMission);
-		m1.setDateDebut(dateDebut);
-		m1.setDuree(duree);
-		
-		//définir la liste des competences necessaires pour la mission
-		
-		//définir le nb de personnes par cometences
-		
-		
-		
-	}
 	
 }

@@ -19,13 +19,14 @@ import javax.swing.JTable;
 
 import Modele.CSV;
 import Modele.CSVModele;
+import Modele.Competence;
 
 public class VuePersonneMission extends JFrame {
 	public JTable tableview=new JTable();
 	public JTable tablePersonne=new JTable();
 	private int numMission;
 	
-	public VuePersonneMission(int numMission) {
+	public VuePersonneMission(int numMission) throws  IOException {
 		this.numMission = numMission;
 		ArrayList<String> personnes = new ArrayList<String>();
 		ArrayList<String[]> personnesAssigne = new ArrayList<String []>();
@@ -111,14 +112,65 @@ public class VuePersonneMission extends JFrame {
 		panelEast.add(panel3,"Center");
 		CSVModele personnels = new CSVModele();
 		Iterator<String []> it = donneeCSVP.iterator();
+//		
+//		String pathPs = Directory + "\\src\\Bd\\missions_competences.csv";
+//				File filePs= new File(pathPs);
+//				CSV csvPs = new CSV();
+//				ArrayList<String[]> donneeMission = csvP.ReadCSVfile(fileP);
+				
+				
+				
 		while (it.hasNext()) {
+			String assigne2="";
 			String id = it.next()[0];
 			for(String[] assigne : personnesAssigne) {
 				if (id.equals(assigne[0])) {
+					assigne2=assigne[0];
 					it.remove();
 				}
 			}
 		}
+//		while(it.hasNext()){
+//			it.next();
+//			boolean ACompetence=false;
+//				int x=0;
+//			//Pour chaque personne
+//			for(String[] personne : donneeCSVP){
+//				try{
+//				if(x>0){
+//				CSV csvlol=new CSV();
+//				System.out.println(personne[0]);
+//				Competence[] c=csvlol.getCompetences(Integer.parseInt(personne[0]));
+//				//Pour chaque competence de la personne
+//				for(Competence comp:c){
+//				if(comp!=null){
+//					//Pour chaque mission
+//					for(String[] compMission :donneeMission){
+//						//Trouver la bonne mission
+//						if(compMission[0].equals(numMission+"")){
+//							//Regarder sur toutes les competences de la mission
+//							for(int i=1;i<compMission.length;i++){
+//								//Compare si la personne à une bonne competence
+//								if(comp.getCode()==compMission[i]){
+//									ACompetence=ACompetence||true;
+//									System.out.println(personne[0]+"\n"+personne[1]);
+//								}
+//							}	
+//						}
+//						}
+//					}
+//				
+//				}
+//		
+//			if(ACompetence==false){
+//				System.out.println(personne[0]+"\n"+personne[1]);
+//				it.remove();
+//			}	
+//				}
+//			x++;
+//			}catch(NumberFormatException e){}
+//			}
+//		}
 		personnels.ajouterDonnee(donneeCSVP);
 		this.tablePersonne.setModel(personnels);
 		panel4.add(tablePersonne);

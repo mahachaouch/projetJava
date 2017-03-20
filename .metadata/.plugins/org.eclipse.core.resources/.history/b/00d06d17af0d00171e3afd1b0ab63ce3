@@ -1,0 +1,156 @@
+package Vue;
+
+import Modele.CSV;
+import Modele.CSVModele;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class FormAddMission extends JFrame {
+	VueMissions vm;
+	JTable tableComp = new JTable();
+	JList<String> listComp = new JList<>();
+
+	public FormAddMission(VueMissions vm) {
+		this.vm = vm;
+		this.setTitle("Ajout d'une mission");
+
+		JTextField textField = new JTextField();
+		textField.setBounds(162, 62, 86, 20);
+		this.getContentPane().add(textField);
+		textField.setColumns(10);
+
+		JLabel lblCode = new JLabel("Code Mission");
+		lblCode.setBounds(80, 65, 90, 14);
+		this.getContentPane().add(lblCode);
+
+		JLabel lblDate = new JLabel("Date début");
+		lblDate.setBounds(80, 115, 80, 14);
+		this.getContentPane().add(lblDate);
+
+		JTextField textField_2 = new JTextField();
+		textField_2.setBounds(162, 112, 247, 20);
+		this.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+
+		JLabel lblDuree = new JLabel("Durée");
+		lblDuree.setBounds(80, 162, 46, 14);
+		this.getContentPane().add(lblDuree);
+
+		JTextField textFiled_1 = new JTextField();
+		textFiled_1.setBounds(162, 157, 247, 20);
+		this.getContentPane().add(textFiled_1);
+		textFiled_1.setColumns(10);
+
+		JButton btnClear = new JButton("Clear");
+
+		btnClear.setBounds(312, 387, 89, 23);
+		this.getContentPane().add(btnClear);
+
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_2.setText(null);
+				textField.setText(null);
+				textFiled_1.setText(null);
+			}
+		});
+
+		String Directory = System.getProperty("user.dir");
+		Directory += "\\src\\Bd\\liste_competences.csv";
+		File file = new File(Directory);
+
+		CSV csv = new CSV();
+		CSVModele modele = new CSVModele();
+
+		ArrayList<String[]> donneeCSV = csv.ReadCSVfile(file);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		JScrollPane scrollPane = new JScrollPane(tableComp);
+		modele.ajouterDonnee(donneeCSV);
+		tableComp.setModel(modele);
+		panel.add(scrollPane);
+		panel.setBounds(80, 200, 350, 150);
+		this.getContentPane().add(panel);
+
+		JButton btnAjout = new JButton("Ajouter comp");
+		btnAjout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnAjoutActionPerformed(e);
+				} catch (NumberFormatException e1) {
+					e1.printStackTrace();
+				}
+			};
+		});
+
+		btnAjout.setBounds(80, 350, 150, 23);
+		this.getContentPane().add(btnAjout);
+
+		DefaultListModel<String> model = new DefaultListModel<>();
+		listComp.setModel(model);
+		listComp.setBounds(450, 200, 200, 150);
+		this.getContentPane().add(listComp);
+
+		JButton btnSubmit = new JButton("submit");
+
+		btnSubmit.setBounds(80, 387, 89, 23);
+		this.getContentPane().add(btnSubmit);
+
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (textField.getText().isEmpty() || (textField_2.getText().isEmpty())
+						|| (textFiled_1.getText().isEmpty()))
+					JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs svp");
+				else {
+					JOptionPane.showMessageDialog(null, "Mission ajoutée");
+					// ajouter la nouvelle mission dans le fichier liste_mission
+					String separator = ";";
+					String line = textField.getText() + separator + textField_2.getText() + separator
+							+ textFiled_1.getText();
+					String line2 = textField.getText()+ separator;
+					try {
+						CSV.addRawCsv("liste_mission.csv", line);
+						String Directory = System.getProperty("user.dir");
+						Directory += "\\src\\Bd\\liste_mission.csv";
+						File fichier = new File(Directory);
+						CSV csv = new CSV();
+						CSVModele modele = new CSVModele();
+						ArrayList<String[]> donneeCSV = csv.ReadCSVfile(fichier);
+						modele.ajouterDonnee(donneeCSV);
+						vm.tableview.setModel(modele);
+						
+				
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		this.setBounds(100, 100, 730, 489);
+
+		this.getContentPane().setLayout(null);
+
+		this.setVisible(true);
+	}
+
+	protected void btnAjoutActionPerformed(ActionEvent e) {
+		int row = tableComp.getSelectedRow();
+		if (row != -1) {
+			CSVModele modele = (CSVModele) tableComp.getModel();
+			DefaultListModel<String> modeleL = (DefaultListModel<String>) listComp.getModel();
+			String [] ligne = {""+modele.getValueAt(row, 0),""+modele.getValueAt(row, 1),""+modele.getValueAt(row, 2)};
+			modeleL.addElement(""+ligne[0]+";"+ligne[1]+";"+ligne[2]+";");
+			listComp.setModel(modeleL);
+			modele.deleteRow(row);
+		}
+
+	}
+}

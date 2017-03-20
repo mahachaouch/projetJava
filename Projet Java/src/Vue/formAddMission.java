@@ -3,6 +3,7 @@ package Vue;
 import Modele.CSV;
 import Modele.CSVModele;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,16 +12,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-
 public class FormAddMission extends JFrame {
 	VueMissions vm;
+	JTable tableComp = new JTable();
+	JList<String> listComp = new JList<>();
+
 	public FormAddMission(VueMissions vm) {
-		this.vm=vm;
+		this.vm = vm;
 		this.setTitle("Ajout d'une mission");
 
 		JTextField textField = new JTextField();
@@ -63,9 +61,47 @@ public class FormAddMission extends JFrame {
 			}
 		});
 
+		String Directory = System.getProperty("user.dir");
+		Directory += "\\src\\Bd\\liste_competences.csv";
+		File file = new File(Directory);
+
+		CSV csv = new CSV();
+		CSVModele modele = new CSVModele();
+
+		ArrayList<String[]> donneeCSV = csv.ReadCSVfile(file);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		JScrollPane scrollPane = new JScrollPane(tableComp);
+		modele.ajouterDonnee(donneeCSV);
+		tableComp.setModel(modele);
+		panel.add(scrollPane);
+		panel.setBounds(80, 200, 350, 150);
+		this.getContentPane().add(panel);
+
+		JButton btnAjout = new JButton("Ajouter comp");
+		btnAjout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnAjoutActionPerformed(e);
+				} catch (NumberFormatException e1) {
+					e1.printStackTrace();
+				}
+			};
+		});
+
+		btnAjout.setBounds(80, 350, 150, 23);
+		this.getContentPane().add(btnAjout);
+
+		DefaultListModel<String> model = new DefaultListModel<>();
+		listComp.setModel(model);
+		listComp.setBounds(450, 200, 200, 150);
+		this.getContentPane().add(listComp);
+
 		JButton btnSubmit = new JButton("submit");
-		
-		btnSubmit.setBounds(65, 387, 89, 23);
+
+		btnSubmit.setBounds(80, 387, 89, 23);
 		this.getContentPane().add(btnSubmit);
 
 		btnSubmit.addActionListener(new ActionListener() {
@@ -76,31 +112,51 @@ public class FormAddMission extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "Mission ajoutée");
 					// ajouter la nouvelle mission dans le fichier liste_mission
-					String seperator = ";";
-					String line = textField.getText() + seperator + textField_2.getText() + seperator
+					String separator = ";";
+					String line = textField.getText() + separator + textField_2.getText() + separator
 							+ textFiled_1.getText();
-					//
+					DefaultListModel<String> modeleL = (DefaultListModel<String>) listComp.getModel();
+					String line2 = textField.getText()+ separator;
+					for (int i=0;i<modeleL.size();i++){
+						line2+=modeleL.getElementAt(i).split(";")[0]+separator;
+					}
+					System.out.println(line2);
 					try {
 						CSV.addRawCsv("liste_mission.csv", line);
+						CSV.addRawCsv("missions_competences.csv", line2);
 						String Directory = System.getProperty("user.dir");
-						Directory+="\\src\\Bd\\liste_mission.csv";
-						File fichier=new File(Directory);
+						Directory += "\\src\\Bd\\liste_mission.csv";
+						File fichier = new File(Directory);
 						CSV csv = new CSV();
 						CSVModele modele = new CSVModele();
 						ArrayList<String[]> donneeCSV = csv.ReadCSVfile(fichier);
 						modele.ajouterDonnee(donneeCSV);
 						vm.tableview.setModel(modele);
+						
+				
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
 		});
-		this .setBounds(100, 100, 730, 489);
-		
+		this.setBounds(100, 100, 730, 489);
+
 		this.getContentPane().setLayout(null);
-		
+
 		this.setVisible(true);
+	}
+
+	protected void btnAjoutActionPerformed(ActionEvent e) {
+		int row = tableComp.getSelectedRow();
+		if (row != -1) {
+			CSVModele modele = (CSVModele) tableComp.getModel();
+			DefaultListModel<String> modeleL = (DefaultListModel<String>) listComp.getModel();
+			String [] ligne = {""+modele.getValueAt(row, 0),""+modele.getValueAt(row, 1),""+modele.getValueAt(row, 2)};
+			modeleL.addElement(""+ligne[0]+";"+ligne[1]+";"+ligne[2]+";");
+			listComp.setModel(modeleL);
+			modele.deleteRow(row);
+		}
+
 	}
 }

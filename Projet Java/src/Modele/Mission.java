@@ -11,10 +11,16 @@ public abstract class Mission  {
 	private Boolean autorisExterne=true;
 	private ArrayList<Competence> listCompetences=new ArrayList<Competence>();
 	
+	/**
+	 * @return
+	 */
 	public Boolean getAutorisExterne() {
 		return autorisExterne;
 	}
 
+	/**
+	 * @param autorisExterne
+	 */
 	public void setAutorisExterne(Boolean autorisExterne) {
 		this.autorisExterne = autorisExterne;
 	}

@@ -132,6 +132,12 @@ public class VueAjoutPersonne extends JFrame{
 				}
 			}
 		});
+	 annuler.addActionListener(new ActionListener() {
+		 @Override
+			public void actionPerformed(ActionEvent arg0) {
+			 dispose();
+			}
+	 });
 	 main.add(ok);
 	 main.add(annuler);
 	 

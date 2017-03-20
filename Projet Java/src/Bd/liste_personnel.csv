@@ -1,4 +1,4 @@
-ID;Prenom;Nom;Date
+ID;Prenom;Nom;Date;
 1;Ollie;Galasso;13/03/2006;oui
 2;Jon;Seastrunk;12/01/2007;non
 3;Ted;Luat;17/07/2007;oui
@@ -52,4 +52,4 @@ ID;Prenom;Nom;Date
 51;Maha;CHAOUCH;10/03/2017;oui
 52;azerazer;azerazer;;non
 53;Lattes;Yann;13/03/2017;oui
-54;peter;manon;;non
+54;John;manon;;non

@@ -10,7 +10,9 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JTable;
 import javax.swing.plaf.synth.SynthSeparatorUI;
+import javax.swing.table.TableModel;
 
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
@@ -247,6 +249,31 @@ public class CSV {
 
 		outfile.close();
 	}
+	// met à jour une case du cvs (croisement entre ligne et colone)
+		 public static void exportTable(JTable table, File file) throws IOException {
+		        TableModel model = table.getModel();
+		        FileWriter out = new FileWriter(file);
+
+		        for(int i=0; i < model.getColumnCount(); i++) {
+		        	if(i+1==model.getColumnCount()){
+		        		out.write(model.getColumnName(i));
+		        	}else{
+		            out.write(model.getColumnName(i)+";");}
+		        }
+		        out.write(""+"\r\n");
+		        for(int i=0; i< model.getRowCount(); i++) {
+		            for(int j=0; j < model.getColumnCount(); j++) {
+		            	if(j+1==model.getColumnCount()){
+			        		out.write(model.getValueAt(i,j).toString());
+			        	}else{
+		                out.write(model.getValueAt(i,j).toString()+";");
+			        	}
+		            }
+		            out.write(""+"\r\n");
+		        }
+		        out.close();
+		        System.out.println("write out to: " + file);
+		    }
 
 	// met à jour une case du cvs (croisement entre ligne et colone)
 

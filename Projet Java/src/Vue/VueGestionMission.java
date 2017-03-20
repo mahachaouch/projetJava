@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -99,12 +100,17 @@ public class VueGestionMission extends JPanel implements Serializable {
 		
 		//Action Event
 		private void openAjouter(ActionEvent e) {
-			//VueAjoutPersonne Va=new VueAjoutPersonne(this);	
+			VueAjoutPersonne Va=new VueAjoutPersonne(this);	
 		}
 		
 		//Ouvrir modifier
 		private void openModifier(ActionEvent e){
+			int row = tableview.getSelectedRow();
+			if (row != -1) {
 			VueModifierPersonne Vm=new VueModifierPersonne(this);
+			}else{
+			JOptionPane.showMessageDialog(null, "Veuillez selectionner une personne à modifier.");
+			}
 		}
 
 }

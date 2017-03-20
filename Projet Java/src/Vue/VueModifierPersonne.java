@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import Modele.CSV;
 import Modele.CSVModele;
@@ -26,7 +27,6 @@ public class VueModifierPersonne extends JFrame {
 
 	VueGestionMission Vm;
 	private static final long serialVersionUID = 1L;
-	private VueGestionMission vgm;
 	JLabel id=new JLabel("ID Personne : ");
 	JTextField tId=new JTextField();
 	JLabel nom=new JLabel("Nom : ");
@@ -84,8 +84,18 @@ public class VueModifierPersonne extends JFrame {
 		 bg.add(externe);
 		 if(Vm.tableview.getValueAt(Vm.tableview.getSelectedRow(), 4).toString().equals("oui")){
 		 interne.setSelected(true);
-		 date.setVisible(true);
-	     tDate.setVisible(true);
+		 new Thread(new Runnable() {
+		      public void run() {
+		        SwingUtilities.invokeLater(new Runnable() {
+		          public void run() { 
+		        	  date.setVisible(true);
+	                 tDate.setVisible(true);
+		           
+		          }
+		        });
+		      }
+		  }).start();
+		
 		 }else{externe.setSelected(true);}
 		 main.add(interne);
 		 main.add(externe);
@@ -108,34 +118,42 @@ public class VueModifierPersonne extends JFrame {
 							line +="oui";
 							}else{line +="non";}
 			
+						String Directory = System.getProperty("user.dir");
+						Directory+="\\src\\Bd\\liste_personnel.csv";
+						System.out.println(Vm.tableview.getSelectedRow());
+						System.out.println(tNom.getText());	
+						File fichier=new File(Directory);
+						CSV csv = new CSV();
+						CSVModele modele = new CSVModele();
+						ArrayList<String[]> donneeCSV = csv.ReadCSVfile(fichier);
+						donneeCSV.get(Vm.tableview.getSelectedRow()+1)[1]=tPrenom.getText();
+						donneeCSV.get(Vm.tableview.getSelectedRow()+1)[2]=tNom.getText();
+						donneeCSV.get(Vm.tableview.getSelectedRow()+1)[3]=tDate.getText();
+						donneeCSV.get(Vm.tableview.getSelectedRow()+1)[4]=line;
+						modele.ajouterDonnee(donneeCSV);
+						Vm.tableview.setModel(modele);
 						try {
-							String Directory = System.getProperty("user.dir");
-							Directory+="\\src\\Bd\\liste_personnel.csv";
-							System.out.println(Vm.tableview.getSelectedRow());
-							System.out.println(tNom.getText());
-							CSV.updateCSV(Directory,tPrenom.getText(),Vm.tableview.getSelectedRow()+1,1);
-//							CSV.updateCSV(Directory,tNom.getText(),Vm.tableview.getSelectedRow()+1,2);
-//							CSV.updateCSV(Directory,tDate.getText(),Vm.tableview.getSelectedRow()+1,3);
-//							CSV.updateCSV(Directory,line,Vm.tableview.getSelectedRow()+1,4);
-//							
-							File fichier=new File(Directory);
-							CSV csv = new CSV();
-							CSVModele modele = new CSVModele();
-							ArrayList<String[]> donneeCSV = csv.ReadCSVfile(fichier);
-							modele.ajouterDonnee(donneeCSV);
-							System.out.println(modele);
-							vgm.tableview.setModel(modele);
-							vgm.setEnabled(true);
-							dispose();
-							
+							CSV.exportTable(Vm.tableview,fichier);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+													
+						Vm.setEnabled(true);
+						dispose();
 						}
 					}
 				}
 			});
+		 
+	 annuler.addActionListener(new ActionListener() {
+			 @Override
+				public void actionPerformed(ActionEvent arg0) {
+				 dispose();
+				}
+		 });
+				
+	
 		 main.add(ok);
 		 main.add(annuler);
 		 

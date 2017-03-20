@@ -1,0 +1,43 @@
+package Vue;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+
+import Modele.CSV;
+import Modele.CSVModele;
+
+public class VuePersonneMission extends JFrame {
+	public JTable tableview=new JTable();
+	private int numMission;
+	
+	public VuePersonneMission(int numMission) {
+		this.numMission = numMission;
+		ArrayList<String> personnes = new ArrayList<String>();
+		
+		//Ajouter les données CSV	
+		String Directory = System.getProperty("user.dir");
+		String pathMP = Directory + "\\src\\Bd\\missions_personnel.csv";
+     	File file = new File(Directory);
+							
+		CSV csvMP = new CSV();
+		CSVModele modele = new CSVModele();
+		
+		ArrayList<String[]> donneeCSV = csvMP.ReadCSVfile(file);
+		for(String[] mission : donneeCSV) {
+			if (mission[0].equals(Integer.toString(this.numMission))) {
+				for(int j=1; j<mission.length;j++) {
+					personnes.add(mission[j]);
+				}
+			}
+		}
+		
+		File fileP = new File
+		CSV csvP = new CSV();
+		
+		
+		System.out.println(personnes);
+	}
+}

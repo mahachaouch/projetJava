@@ -2,25 +2,62 @@ package Modele;
 
 public class Competence {
 	
-	private String domaine;
+	@Override
+	public String toString() {
+		return "Competence [nomAng=" + nomAng + ", code=" + code + "]";
+	}
+	private String nomAng;
+	private String nomFr;
 	private String code;
 	
-	public Competence(String domaine, String code) {
-		this.domaine = domaine;
+	/**
+	 * @param code
+	 * @param nomAng
+	 * @param nomFr
+	 */
+	public Competence( String code,String nomAng,String nomFr) {
+		this.nomAng = nomAng;
 		this.code = code;
+		this.nomFr=nomFr;
 	}
  
-	public String getDomaine() {
-		return domaine;
+	/**
+	 * @return
+	 */
+	public String getNomAng() {
+		return nomAng;
 	}
-	public void setDomaine(String domaine) {
-		this.domaine = domaine;
+	/**
+	 * @param nomAng
+	 */
+	public void setNomAng(String nomAng) {
+		this.nomAng = nomAng;
 	}
+	/**
+	 * @return
+	 */
 	public String getCode() {
 		return code;
 	}
+	/**
+	 * @param code
+	 */
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getNomFr() {
+		return nomFr;
+	}
+
+	/**
+	 * @param nomFr
+	 */
+	public void setNomFr(String nomFr) {
+		this.nomFr = nomFr;
 	}
 	 
 }
